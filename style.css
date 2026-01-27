@@ -87,15 +87,79 @@ h1, h2, h3 {
 
 /* 3. SEÇÃO HERO */
 .hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/hospital-fachada.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 70vh;
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.35) 55%, rgba(0, 0, 0, 0.05) 100%), url("assets/medico com bebe.png");
+    background-size: 100% 100%;
+    background-position: right center;
+    background-repeat: no-repeat;
+    aspect-ratio: 3 / 2;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    text-align: center;
+    text-align: left;
     color: var(--light-text);
+    padding: 0 8%;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 620px;
+    padding: 0 10px;
+    position: absolute;
+    left: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.ribbon {
+    background-color: #0b7d3b;
+    color: var(--light-text);
+    overflow: hidden;
+    padding: 12px 0;
+}
+
+.ribbon-track {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    white-space: nowrap;
+    padding-left: 10px;
+    animation: ribbon-scroll 18s linear infinite;
+}
+
+.ribbon-track span {
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    padding-right: 60px;
+}
+
+@keyframes ribbon-scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.fachada {
+    padding: 60px 0;
+    text-align: center;
+    background-color: var(--background-color);
+}
+
+.fachada-media {
+    margin-top: 30px;
+}
+
+.fachada-media img {
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
 }
 
 .galeria {
@@ -135,11 +199,30 @@ h1, h2, h3 {
     font-size: 3.5rem;
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    animation: hero-fade-up 0.9s ease-out both;
 }
 
 .hero-content p {
     font-size: 1.2rem;
     margin-bottom: 30px;
+    animation: hero-fade-up 1s ease-out both;
+    animation-delay: 0.15s;
+}
+
+.hero-content .btn {
+    animation: hero-fade-up 1s ease-out both;
+    animation-delay: 0.3s;
+}
+
+@keyframes hero-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* 4. SEÇÕES PRINCIPAIS (Sobre, Serviços) */
@@ -306,10 +389,67 @@ h2 {
     }
 
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 1.9rem;
+        line-height: 1.05;
+        margin-bottom: 12px;
+    }
+
+    .hero {
+        justify-content: center;
+        text-align: center;
+        padding: 0 6%;
+        background-position: center;
+    }
+
+    .hero-content {
+        max-width: none;
+        left: 6%;
+        right: 6%;
+        width: auto;
+    }
+
+    .hero-content p {
+        font-size: 0.95rem;
+        line-height: 1.35;
+        margin-bottom: 16px;
     }
 
     .card {
         width: 80%;
+    }
+
+    .ribbon-track {
+        animation-duration: 22s;
+    }
+
+    .ribbon-track span {
+        padding-right: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.7rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ribbon-track {
+        animation: none;
+        justify-content: center;
+    }
+
+    .hero-content h1,
+    .hero-content p,
+    .hero-content .btn {
+        animation: none;
     }
 }
